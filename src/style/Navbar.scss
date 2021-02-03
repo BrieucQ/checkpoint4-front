@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+.menu {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    width: 20%;
+    height: 20px;
+    padding: 10px 10px 10px 10px;
+    margin-right: 20px;
+    a{
+        text-decoration: none;
+        color: white;
+    } li {
+        transition: transform .2s;
+    } li:hover {
+        transform: scale(1.3);
+    }
+}
+}
