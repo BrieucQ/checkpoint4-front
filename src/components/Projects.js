@@ -1,26 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "../style/Projects.scss";
-import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import axios from "axios";
 // import API from "../services/API";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 450,
-    color: "black",
+    "& > *": {
+      margin: theme.spacing(1),
+    },
   },
-  media: {
-    height: 150,
-    width: 450,
-  },
-});
+}));
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
@@ -39,41 +30,29 @@ export default function Projects() {
   return (
     <>
       <div className="project-page">
-        <div className="card">
-          {projects &&
-            projects.map((project) => {
-              return (
-                <Card className={classes.root}>
-                  <CardActionArea>
-                    <CardMedia
-                      className={classes.media}
-                      image={project.image}
-                      title={project.name}
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        {project.name}
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        component="p"
-                      >
-                        {project.description}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions>
+        {projects &&
+          projects.map((project) => {
+            return (
+              <div className="card-picture">
+                <img src={project.image} alt={project.name} />
+                <section className="project-description">
+                  <p>{project.description}</p>
+                  <div className="technos">
+                    <p>Technos utilisés :</p>
+                    <img src={project.front} alt={project.name} />
+                    <img src={project.back} alt={project.name} />
+                  </div>
+                  <div className={classes.root}>
                     <a href={project.lien}>
-                      <Button variant="contained" size="small" color="primary">
-                        Learn More
+                      <Button variant="contained" color="primary">
+                        En savoir plus
                       </Button>
                     </a>
-                  </CardActions>
-                </Card>
-              );
-            })}
-        </div>
+                  </div>
+                </section>
+              </div>
+            );
+          })}
       </div>
     </>
   );
